@@ -1,32 +1,30 @@
-# Use the official OpenJDK image
+# ---- Build Stage ----
 FROM openjdk:17-jdk-slim as builder
 
-# Set the working directory
-WORKDIR /BusSystem
+WORKDIR /app
 
-# Copy the Gradle wrapper and build files
+# Copy Gradle wrapper and build scripts
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle.kts .
 COPY settings.gradle.kts .
 
-# Copy the source code
+# Copy project source
 COPY src src
 
 # Build the application
 RUN ./gradlew build --no-daemon
 
-# Create a smaller image for the runtime
-FROM openjdk:17-jre-slim
+# ---- Runtime Stage ----
+FROM openjdk:17-jre
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the built JAR file from the builder stage
-COPY --from=builder /app/build/libs/your-app-name.jar .
+# Copy the built jar from builder
+COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Expose the port the app will run on
+# Expose port
 EXPOSE 8080
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "your-app-name.jar"]
+# Run the app
+ENTRYPOINT ["java", "-jar", "app.jar"]
