@@ -11,4 +11,5 @@ data class AuthenticationResponse(
   val phoneNumber: String,
   val role: Role,
   val accessToken: String,
+  val refreshToken: String
 )

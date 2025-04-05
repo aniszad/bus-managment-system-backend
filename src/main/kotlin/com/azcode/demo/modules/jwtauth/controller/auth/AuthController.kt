@@ -20,5 +20,11 @@ class AuthController(
   ): AuthenticationResponse =
     authenticationService.authentication(authRequest)
 
+  @PostMapping("/refresh")
+  fun refreshToken(
+    @RequestBody refreshRequest: RefreshTokenRequest
+  ) : RefreshTokenResponse =
+    authenticationService.refreshAccessToken(refreshRequest.token)
+
 }
 

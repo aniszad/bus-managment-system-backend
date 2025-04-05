@@ -21,6 +21,9 @@ repositories {
 
 dependencies {
 
+	// MQTT Broker (using mosquitto)
+	implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.postgresql:postgresql:42.7.2")  // PostgreSQL JDBC driver
 	implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")

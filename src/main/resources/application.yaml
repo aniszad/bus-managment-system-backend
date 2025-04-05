@@ -3,7 +3,8 @@ server:
 
 jwt:
   key: ${JWT_KEY}
-  access-token-expiration: 604800000
+  access-token-expiration: 172800000
+  refresh-token-expiration: 2592000000
 
 spring:
   datasource:
