@@ -1,3 +1,25 @@
+#server:
+#  port: 8080
+#
+#jwt:
+#  key: ${JWT_KEY}
+#  access-token-expiration: 172800000
+#  refresh-token-expiration: 2592000000
+#
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/BusSystemDatabase  # Specify the database name here
+#    username: postgres  # The PostgreSQL server username
+#    password: anisanis  # The PostgreSQL server password
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: update  # Adjust as needed (update, create, validate, etc.)
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
 server:
   port: 8080
 
@@ -8,17 +30,19 @@ jwt:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/BusSystemDatabase  # Specify the database name here
-    username: postgres  # The PostgreSQL server username
-    password: anisanis  # The PostgreSQL server password
+    url: jdbc:postgresql://dpg-ovoo98jjuibrs73bv2f40-a.db.render.com:5432/bus_system_database
+    username: bus_system_database_user
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update  # Adjust as needed (update, create, validate, etc.)
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
 
 
