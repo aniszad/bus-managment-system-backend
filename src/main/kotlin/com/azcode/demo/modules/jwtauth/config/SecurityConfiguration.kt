@@ -37,8 +37,9 @@ class SecurityConfiguration(
           // ✅ Allow user registration WITHOUT authentication
           .requestMatchers(HttpMethod.POST, "/api/user/create").permitAll()
 
+
           // ✅ Restrict all other user-related actions to ADMIN only
-          .requestMatchers("/api/user/**").hasRole("ADMIN")
+          //.requestMatchers("/api/user/**").hasRole("ADMIN")
 
           // ✅ Require authentication for everything else
           .anyRequest().authenticated()

@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-
+	implementation("org.jboss.logging:jboss-logging:3.5.0.Final")
 	// MQTT Broker (using mosquitto)
 	implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 
@@ -43,7 +43,6 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
 	implementation("org.springframework.boot:spring-boot-starter-tomcat:3.4.2")
-
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")

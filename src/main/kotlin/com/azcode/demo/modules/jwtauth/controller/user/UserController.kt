@@ -1,5 +1,6 @@
 package com.azcode.demo.modules.jwtauth.controller.user
 
+import com.azcode.demo.modules.jwtauth.model.Role
 import com.azcode.demo.modules.jwtauth.service.UserService
 import com.azcode.demo.modules.jwtauth.model.User
 import org.springframework.http.HttpStatus
@@ -29,10 +30,12 @@ class UserController(
       ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
   }
 
-  @GetMapping
-  fun listAll(): List<UserResponse> =
-    userService.findAll()
-      .map { it.toResponse() }
+  @PostMapping("/getAll")
+  @CrossOrigin(origins = ["*"])
+  fun listAll(): List<UserFullResponse> =
+    userService.findAll().map {
+      it.toUserFullResponse()
+    }
 
   @GetMapping("/{uuid}")
   fun findByUUID(@PathVariable uuid: UUID): UserResponse =
@@ -54,6 +57,17 @@ class UserController(
     UserResponse(
       uuid = this.id,
       email = this.email,
+    )
+
+  private fun User.toUserFullResponse() =
+    UserFullResponse(
+      id = this.id,
+      firstName = this.firstName,
+      lastName = this.lastName,
+      email = this.email,
+      phoneNumber = this.phoneNumber,
+      role = Role.valueOf(this.role.name),
+      createdAt = this.createdAt,
     )
 
   private fun UserRequest.toModel(): User =
