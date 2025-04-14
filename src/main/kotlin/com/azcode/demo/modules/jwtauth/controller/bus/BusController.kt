@@ -45,9 +45,6 @@ class BusController(
         busService.findBusByName(name)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Bus not found by name.")
 
-    @GetMapping("/active")
-    fun listActive(): List<Bus> = busService.findAllActive()
-
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: UUID, @RequestBody busRequest: BusRequest): Bus =
         busService.updateBus(id, busRequest.toModel())
