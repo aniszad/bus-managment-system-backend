@@ -32,7 +32,8 @@ class BusController(
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create bus.")
     }
 
-    @GetMapping("/all")
+    @GetMapping("/getAll")
+    @CrossOrigin(origins = ["*"])
     fun listAll(): List<Bus> = busService.findAll()
 
     @GetMapping("/{id}")
