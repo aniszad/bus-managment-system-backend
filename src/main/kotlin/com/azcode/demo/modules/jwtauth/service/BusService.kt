@@ -25,7 +25,6 @@ class BusService(
 
     fun findAll(): List<Bus> = busRepository.findAll()
 
-    fun findAllActive(): List<Bus> = busRepository.findAllByCurrentlyActiveTrue()
 
     fun findBusById(id: UUID): Bus? = busRepository.findBusById(id)
 

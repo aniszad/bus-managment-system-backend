@@ -11,5 +11,4 @@ interface RouteRepository : JpaRepository<Route, UUID> {
     fun findRouteByName(name: String): Route?
     fun existsByName(name: String): Boolean
     fun deleteRouteByName(name: String)
-    fun findAllByIsActiveTrue(): List<Route>
 }

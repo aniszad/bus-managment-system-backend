@@ -12,5 +12,4 @@ interface BusRepository : JpaRepository<Bus, UUID> {
     fun findBusByName(name: String): Bus?
     fun existsByName(name: String): Boolean
     fun deleteBusByName(name: String)
-    fun findAllByCurrentlyActiveTrue(): List<Bus>
 }
