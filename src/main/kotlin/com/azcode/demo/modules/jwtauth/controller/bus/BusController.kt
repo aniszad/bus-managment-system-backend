@@ -33,7 +33,6 @@ class BusController(
     }
 
     @GetMapping("/getAll")
-    @CrossOrigin(origins = ["*"])
     fun listAll(): List<Bus> = busService.findAll()
 
     @GetMapping("/{id}")
