@@ -4,8 +4,10 @@ import com.azcode.demo.modules.jwtauth.exception.UserAlreadyExistsException
 import com.azcode.demo.modules.jwtauth.model.Bus
 import com.azcode.demo.modules.jwtauth.model.Driver
 import com.azcode.demo.modules.jwtauth.repository.BusRepository
+import org.springframework.http.HttpStatus
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
 import java.util.*
 
 @Service
