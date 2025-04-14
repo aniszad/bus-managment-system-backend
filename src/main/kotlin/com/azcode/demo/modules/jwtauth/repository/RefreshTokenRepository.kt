@@ -14,5 +14,4 @@ class RefreshTokenRepository {
   fun save(token: String, userDetails: UserDetails) {
     tokens[token] = userDetails
   }
-
 }
