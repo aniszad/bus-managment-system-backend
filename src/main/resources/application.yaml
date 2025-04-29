@@ -30,7 +30,8 @@ jwt:
 
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cvoo98juibrs73bv2f40-a:5432/bus_system_database
+    url: postgresql://postgres:[YOUR-PASSWORD]@db.vuvudydztbahpqkqdunh.supabase.co:5432/postgres
+    #url: jdbc:postgresql://dpg-cvoo98juibrs73bv2f40-a:5432/bus_system_database
     username: bus_system_database_user
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
