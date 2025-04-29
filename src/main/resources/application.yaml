@@ -30,11 +30,13 @@ jwt:
 
 spring:
   datasource:
-    url: postgresql://postgres:[YOUR-PASSWORD]@db.vuvudydztbahpqkqdunh.supabase.co:5432/postgres
+    # Use the Session Pooler for production (IPv4 compatible, ideal for persistent connections)
+    url: jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:5432/postgres?user=postgres.vuvudydztbahpqkqdunh&password=${DB_PASSWORD}
     #url: jdbc:postgresql://dpg-cvoo98juibrs73bv2f40-a:5432/bus_system_database
     username: bus_system_database_user
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
 
   jpa:
     hibernate:
