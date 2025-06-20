@@ -18,18 +18,11 @@ data class Driver (
     @Column(name = "last_name", nullable = false)
     val lastName: String,
 
-    @Column(name = "email", nullable = false, unique = true)
-    val email: String,
-
     @Column(name = "phone_number")
     val phoneNumber: String = "",
 
-    @Column(name = "password", nullable = false)
-    val password: String,
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    val role: Role,
+    @Column(name = "isActive")
+    var isActive: Boolean = false,
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

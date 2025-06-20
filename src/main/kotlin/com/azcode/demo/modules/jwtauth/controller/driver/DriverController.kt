@@ -31,6 +31,7 @@ class DriverController(
     }
 
     @PostMapping("/getAll")
+    @CrossOrigin(origins = ["*"])
     fun listAll(): List<DriverFullResponse> =
         driverService.findAll()
             .map { it.toFullResponse() }
