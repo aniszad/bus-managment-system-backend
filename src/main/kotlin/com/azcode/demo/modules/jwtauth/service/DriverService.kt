@@ -13,16 +13,10 @@ class DriverService(
     private val passwordEncoder: PasswordEncoder
 ) {
     fun createDriver(driver: Driver): Driver? {
-        val foundByEmail = driverRepository.findDriverByEmail(driver.email)
         val foundByPhoneNumber = driverRepository.findDriverByPhoneNumber(driver.phoneNumber)
-        val encryptedDriver = driver.copy(password = passwordEncoder.encode(driver.password))
-        return if (foundByEmail == null && foundByPhoneNumber == null) {
-            driverRepository.save(encryptedDriver)
-            encryptedDriver
-        } else if (foundByEmail != null && foundByPhoneNumber != null) {
-            throw UserAlreadyExistsException("email and phone number already in use")
-        } else if (foundByEmail != null) {
-            throw UserAlreadyExistsException("email already in use")
+        return if (foundByPhoneNumber == null) {
+            driverRepository.save(driver)
+            driver
         } else {
             throw UserAlreadyExistsException("phone number already in use")
         }

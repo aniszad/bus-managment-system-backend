@@ -4,5 +4,4 @@ import java.util.*
 
 data class DriverResponse (
     val uuid: UUID,
-    val email: String,
 )

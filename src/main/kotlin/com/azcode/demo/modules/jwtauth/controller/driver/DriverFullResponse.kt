@@ -7,8 +7,7 @@ data class DriverFullResponse (
     val id: String,
     val firstName: String,
     val lastName: String,
-    val email: String,
     val phoneNumber: String = "",
-    val role: Role,
+    val isActive: Boolean,
     val createdAt: Date = Date(),
 )

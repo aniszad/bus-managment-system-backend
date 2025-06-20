@@ -53,8 +53,7 @@ class DriverController(
     }
     private fun Driver.toResponse() =
         DriverResponse(
-            uuid = UUID.randomUUID(),
-            email = this.email,
+            uuid = this.id
         )
 
     private fun Driver.toFullResponse() : DriverFullResponse =
@@ -62,9 +61,9 @@ class DriverController(
             id = this.id.toString(),
             firstName = this.firstName,
             lastName = this.lastName,
-            email = this.email,
             phoneNumber = this.phoneNumber,
-            role = this.role,
+            isActive = this.isActive,
+            createdAt = this.createdAt,
         )
 
     private fun DriverRequest.toModel() : Driver =
@@ -72,10 +71,8 @@ class DriverController(
             id = UUID.randomUUID(),
             firstName = this.firstName,
             lastName = this.lastName,
-            email = this.email,
             phoneNumber = this.phoneNumber ?: "",
-            password = this.password,
-            role = this.role,
+            isActive = this.isActive,
             createdAt = Date(System.currentTimeMillis())
         )
 
