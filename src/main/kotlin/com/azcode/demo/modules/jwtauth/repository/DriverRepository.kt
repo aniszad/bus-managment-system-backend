@@ -8,6 +8,5 @@ import java.util.*
 @Repository
 interface DriverRepository : JpaRepository<Driver, UUID> {
 
-    fun findDriverByEmail(email: String): Driver?
     fun findDriverByPhoneNumber(phoneNumber: String): Driver?
 }
