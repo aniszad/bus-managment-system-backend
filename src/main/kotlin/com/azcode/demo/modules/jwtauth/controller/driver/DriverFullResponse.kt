@@ -4,7 +4,7 @@ import com.azcode.demo.modules.jwtauth.model.Role
 import java.util.*
 
 data class DriverFullResponse (
-    val id: UUID,
+    val id: String,
     val firstName: String,
     val lastName: String,
     val email: String,

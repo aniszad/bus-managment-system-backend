@@ -58,7 +58,7 @@ class DriverController(
 
     private fun Driver.toFullResponse() : DriverFullResponse =
         DriverFullResponse(
-            id = this.id,
+            id = this.id.toString(),
             firstName = this.firstName,
             lastName = this.lastName,
             email = this.email,
