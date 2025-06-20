@@ -30,27 +30,13 @@ class DriverController(
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
     }
 
-    @PostMapping("/getAll")
+    @PostMapping("/all")
     @CrossOrigin(origins = ["*"])
     fun listAll(): List<DriverFullResponse> =
         driverService.findAll()
             .map { it.toFullResponse() }
 
-    @GetMapping("/{uuid}")
-    fun findByUUID(@PathVariable uuid: UUID): DriverResponse =
-        driverService.findByUUID(uuid)
-            ?.toResponse()
-            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
 
-    @DeleteMapping("/{uuid}")
-    fun deleteByUUID(@PathVariable uuid: UUID): ResponseEntity<Boolean> {
-        val success = driverService.deleteByUUID(uuid)
-
-        return if (success)
-            ResponseEntity.noContent().build()
-        else
-            throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.")
-    }
     private fun Driver.toResponse() =
         DriverResponse(
             uuid = this.id

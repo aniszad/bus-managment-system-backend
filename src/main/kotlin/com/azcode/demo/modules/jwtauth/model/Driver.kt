@@ -6,7 +6,7 @@ import java.util.*
 
 
 @Entity
-@Table(name = "drivers", uniqueConstraints = [UniqueConstraint(columnNames = ["email"])])
+@Table(name = "drivers", uniqueConstraints = [UniqueConstraint(columnNames = ["phoneNumber"])])
 data class Driver (
     @Id
     @Column(name = "id", nullable = false, updatable = false)
