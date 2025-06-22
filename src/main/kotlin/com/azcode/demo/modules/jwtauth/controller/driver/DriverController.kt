@@ -14,7 +14,6 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/driver")
-@CrossOrigin(origins = ["*"])
 class DriverController(
     private val driverService : DriverService
 ) {
@@ -30,7 +29,7 @@ class DriverController(
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
     }
 
-    @GetMapping("/all")
+    @GetMapping("/getAllDrivers")
     @CrossOrigin(origins = ["*"])
     fun listAll(): List<DriverFullResponse> =
         driverService.findAll()
