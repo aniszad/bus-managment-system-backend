@@ -30,7 +30,7 @@ class DriverController(
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create user.")
     }
 
-    @PostMapping("/all")
+    @GetMapping("/all")
     @CrossOrigin(origins = ["*"])
     fun listAll(): List<DriverFullResponse> =
         driverService.findAll()
