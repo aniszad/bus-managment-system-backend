@@ -35,7 +35,7 @@ class DriverController(
         driverService.findAll()
             .map { it.toFullResponse() }
 
-    @GetMapping("/update")
+    @PostMapping("/update")
     fun updateDriverInfo(@RequestBody driverRequest: DriverRequest): DriverFullResponse =
         driverService.updateDriverInfo(driverRequest).toFullResponse()
 
