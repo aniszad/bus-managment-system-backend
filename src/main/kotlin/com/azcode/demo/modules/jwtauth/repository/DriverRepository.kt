@@ -9,4 +9,6 @@ import java.util.*
 interface DriverRepository : JpaRepository<Driver, UUID> {
 
     fun findDriverByPhoneNumber(phoneNumber: String): Driver?
+
+
 }

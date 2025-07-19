@@ -13,13 +13,13 @@ data class Driver (
     val id: UUID = UUID.randomUUID(),  // Removed @GeneratedValue since we use UUID
 
     @Column(name = "first_name", nullable = false)
-    val firstName: String,
+    var firstName: String,
 
     @Column(name = "last_name", nullable = false)
-    val lastName: String,
+    var lastName: String,
 
     @Column(name = "phone_number")
-    val phoneNumber: String = "",
+    var phoneNumber: String = "",
 
     @Column(name = "isActive")
     var isActive: Boolean = false,
