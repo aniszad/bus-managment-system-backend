@@ -20,6 +20,7 @@ class BusService(
         }
         return busRepository.save(bus)
     }
+    fun findBusByCode(code: String): Bus? = busRepository.findBusByCode(code)
 
     fun findBusByName(busName: String): Bus? = busRepository.findBusByName(busName)
 

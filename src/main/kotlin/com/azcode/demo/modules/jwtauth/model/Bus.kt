@@ -3,16 +3,23 @@ package com.azcode.demo.modules.jwtauth.model
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import java.util.*
+import kotlin.random.Random
 
 @Entity
 @Table(
     name = "buses",
-    uniqueConstraints = [UniqueConstraint(columnNames = ["name"])]
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["name"]),
+        UniqueConstraint(columnNames = ["code"]) // ensure code is unique
+    ]
 )
 data class Bus(
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     val id: UUID = UUID.randomUUID(),
+
+    @Column(name = "code", nullable = false, unique = true, length = 6)
+    val code: String = generateBusCode(),
 
     @Column(name = "name", nullable = false)
     val name: String,
@@ -41,4 +48,16 @@ data class Bus(
 
     @Version
     var version: Long? = null
-)
+) {
+    companion object {
+        // Avoid confusing characters for drivers (e.g., O, I, 0)
+        private val ALLOWED_CHARS = (('A'..'Z') + ('1'..'9')) - listOf('O', 'I')
+
+        fun generateBusCode(length: Int = 6): String {
+            return (1..length)
+                .map { ALLOWED_CHARS.random(Random) }
+                .joinToString("")
+        }
+    }
+}
+

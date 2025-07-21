@@ -45,6 +45,11 @@ class BusController(
         busService.findBusByName(name)
             ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Bus not found by name.")
 
+    @GetMapping("/findByCode")
+    fun findByCode(@RequestBody busCodeRequest: BusCodeRequest): Bus{
+        return busService.findBusByCode(busCodeRequest.busCode) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Bus not found.")
+    }
+
     @PutMapping("/update/{id}")
     fun update(@PathVariable id: UUID, @RequestBody busRequest: BusRequest): Bus =
         busService.updateBus(id, busRequest.toModel())

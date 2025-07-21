@@ -9,6 +9,7 @@ import java.util.*
 @Repository
 interface BusRepository : JpaRepository<Bus, UUID> {
     fun findBusById(id: UUID): Bus?
+    fun findBusByCode(code: String): Bus?
     fun findBusByName(name: String): Bus?
     fun existsByName(name: String): Boolean
     fun deleteBusByName(name: String)
