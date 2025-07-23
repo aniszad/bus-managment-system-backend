@@ -1,5 +1,6 @@
 package com.azcode.demo.modules.jwtauth.model
 
+import com.azcode.demo.modules.jwtauth.controller.driver.DriverFullResponse
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import java.util.*
@@ -32,3 +33,12 @@ data class Driver (
     @Version
     var version: Long? = null
 )
+fun Driver.toFullResponse() : DriverFullResponse =
+    DriverFullResponse(
+        id = this.id.toString(),
+        firstName = this.firstName,
+        lastName = this.lastName,
+        phoneNumber = this.phoneNumber,
+        isActive = this.isActive,
+        createdAt = this.createdAt,
+    )

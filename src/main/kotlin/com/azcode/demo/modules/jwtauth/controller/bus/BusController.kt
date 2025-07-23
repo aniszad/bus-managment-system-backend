@@ -6,6 +6,8 @@ import com.azcode.demo.modules.jwtauth.controller.driver.DriverResponse
 import com.azcode.demo.modules.jwtauth.controller.route.RouteController
 import com.azcode.demo.modules.jwtauth.controller.user.UserController
 import com.azcode.demo.modules.jwtauth.model.Bus
+import com.azcode.demo.modules.jwtauth.model.toFullResponse
+import com.azcode.demo.modules.jwtauth.model.toFullRouteResponse
 import com.azcode.demo.modules.jwtauth.service.BusService
 import com.azcode.demo.modules.jwtauth.service.DriverService
 import com.azcode.demo.modules.jwtauth.service.RouteService
@@ -33,7 +35,9 @@ class BusController(
     }
 
     @GetMapping("/getAll")
-    fun listAll(): List<Bus> = busService.findAll()
+    fun listAll(): List<BusFullResponse>? = busService.findAll().map {
+        it.toBusFullResponse()
+    }
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: UUID): Bus =
@@ -71,5 +75,19 @@ class BusController(
             route = if (this.route != null) routeService.findRouteById(UUID.fromString(this.route)) else null,
             driver = if (this.driver != null) driverService.findByUUID(UUID.fromString(this.driver)) else null,
         )
+
+    fun Bus.toBusFullResponse(): BusFullResponse{
+        return BusFullResponse(
+            id = this.id.toString(),
+            code = this.code,
+            name = this.name,
+            currentlyActive = this.currentlyActive,
+            brokenDown = this.brokenDown,
+            licensePlate = this.licensePlate,
+            route = this.route?.id?.let { routeService.findRouteById(it) }?.toFullRouteResponse(),
+            driver = this.driver?.id?.let { driverService.findByUUID(it) }?.toFullResponse(),
+            createAt = this.createdAt
+        )
+    }
 }
 
