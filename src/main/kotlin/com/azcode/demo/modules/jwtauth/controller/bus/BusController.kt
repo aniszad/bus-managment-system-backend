@@ -26,7 +26,7 @@ class BusController(
     private val logger: Logger = LoggerFactory.getLogger(BusController::class.java)
 
     @PostMapping("/create")
-    fun create(@RequestBody busRequest: BusRequest): Bus {
+    fun create(@RequestBody busRequest: BusRequest): Boolean {
         logger.info("Creating bus: $busRequest")
         return busService.createBus(busRequest.toModel())
             ?: throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create bus.")
@@ -68,8 +68,8 @@ class BusController(
             currentlyActive = this.currentlyActive,
             brokenDown = this.brokenDown,
             licensePlate = this.licensePlate,
-            route = if (this.routeId != null) routeService.findRouteById(this.routeId) else null,
-            driver = if (this.driverId != null) driverService.findByUUID(this.driverId) else null,
+            route = if (this.route != null) routeService.findRouteById(UUID.fromString(this.route)) else null,
+            driver = if (this.driver != null) driverService.findByUUID(UUID.fromString(this.driver)) else null,
         )
 }
 

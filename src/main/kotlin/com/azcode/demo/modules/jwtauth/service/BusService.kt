@@ -14,12 +14,14 @@ import java.util.*
 class BusService(
     private val busRepository: BusRepository,
 ) {
-    fun createBus(bus: Bus): Bus? {
+    fun createBus(bus: Bus): Boolean {
         if (busRepository.findBusByName(bus.name) != null) {
             throw UserAlreadyExistsException("Bus already exists")
         }
-        return busRepository.save(bus)
+        busRepository.save(bus)
+        return true
     }
+
     fun findBusByCode(code: String): Bus? = busRepository.findBusByCode(code)
 
     fun findBusByName(busName: String): Bus? = busRepository.findBusByName(busName)

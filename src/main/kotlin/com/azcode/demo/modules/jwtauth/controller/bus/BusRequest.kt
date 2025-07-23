@@ -4,10 +4,9 @@ import java.util.UUID
 
 data class BusRequest (
     val name: String,
-    val currentlyActive: Boolean,
-    val brokenDown: Boolean,
+    val currentlyActive: Boolean = false,
+    val brokenDown: Boolean = false,
     val licensePlate: String,
-    val routeId : UUID?,
-    val driverId : UUID?,
-
+    val route: String? = null,
+    val driver: String? = null,
 )
