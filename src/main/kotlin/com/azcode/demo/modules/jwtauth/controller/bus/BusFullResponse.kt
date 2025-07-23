@@ -1,6 +1,7 @@
 package com.azcode.demo.modules.jwtauth.controller.bus
 
 import com.azcode.demo.modules.jwtauth.controller.driver.DriverFullResponse
+import com.azcode.demo.modules.jwtauth.controller.route.RouteFullResponse
 import com.azcode.demo.modules.jwtauth.model.Driver
 import com.azcode.demo.modules.jwtauth.model.Route
 import java.util.*
